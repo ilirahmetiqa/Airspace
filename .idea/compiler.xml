@@ -9,8 +9,8 @@
         <module name="Airspace" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Airspace" target="1.7" />
+    <bytecodeTargetLevel target="8">
+      <module name="Airspace" target="8" />
     </bytecodeTargetLevel>
   </component>
 </project>

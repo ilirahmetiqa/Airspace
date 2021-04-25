@@ -95,6 +95,53 @@ Feature: Login page validation
 
 
 
+  Scenario Outline: User enters escaped characters in the username and password field
+    When I enter data with escaped characters in the "<username and password>" field
+    And I click on login button
+    Then I verify that I am not able to login
+    Examples:
+      | username and password |
+      | 1                     |
+      | 2                     |
+      | 3                     |
+      | 4                     |
+      | 5                     |
+
+
+
+
+  Scenario Outline: User enters Uppercase data and space in the password field
+    When I enter data with uppercase and space in the "<username>" field
+    And I click on login button
+    Then I verify that I am not able to login
+    Examples:
+      | username              |
+      | 1                     |
+      | 2                     |
+      | 3                     |
+      | 4                     |
+      | 5                     |
+      | 6                     |
+
+
+
+  Scenario Outline: User enters Uppercase data and space in the password field
+    When I enter data with uppercase and space in the "<password>" field
+    And I click on login button
+    Then I verify that I am not able to login.
+    Examples:
+      | password              |
+      | 7                     |
+      | 8                     |
+      | 9                     |
+      | 10                    |
+      | 11                    |
+      | 12                    |
+      | 13                    |
+      | 14                    |
+
+
+
   Scenario Outline: User enters a SQL injection
     When I enter "<sql injection>"
     And I click on login button

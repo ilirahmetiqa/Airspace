@@ -35,13 +35,13 @@ public class LoginSD {
 
     @Then("^I verify that I am not able to login$")
     public void iAmNotAbleToLogin(){
-        Assert.assertEquals(loginPage.getInvalidUserNameText(), "Your username is invalid!\n" +
+        Assert.assertEquals(loginPage.getInvalidUserText(), "Your username is invalid!\n" +
                 "×", "WAS NOT THE CORRECT LABEL FOR THE Username");
     }
 
     @Then("^I verify that I am not able to login without password$")
     public void iAmNotAbleToLoginWithoutPassord(){
-        Assert.assertEquals(loginPage.getInvalidUserNameText(), "Your password is invalid!\n" +
+        Assert.assertEquals(loginPage.getInvalidUserText(), "Your password is invalid!\n" +
                 "×", "WAS NOT THE CORRECT LABEL FOR THE Password");
     }
 
@@ -158,6 +158,25 @@ public class LoginSD {
     @And("^the logout alert text background color is green$")
     public void logoutAlertBackgroundColorIsGreen(){
         Assert.assertEquals(securedPage.flashAlertBackgroundColor(), "rgba(93, 164, 35, 1)", "THE ALERT BACKGROUND COLOR WAS NOT GREEN");
+    }
+
+
+    @When("^I enter data with escaped characters in the \"([^\"]*)\" field$")
+    public void enterEscapeCharacters(int escape_characters){
+        loginPage.enterEscapeCharacters(escape_characters);
+    }
+
+
+    @When("^I enter data with uppercase and space in the \"([^\"]*)\" field$")
+    public void enterUppercaseData(int uppercase_data){
+        loginPage.enterUppercaseData(uppercase_data);
+    }
+
+
+    @Then("^I verify that I am not able to login.$")
+    public void iAmNotAbleToLoginWithThatPass(){
+        Assert.assertEquals(loginPage.getInvalidUserText(), "Your password is invalid!\n" +
+                "×", "WAS NOT THE CORRECT LABEL FOR THE Password");
     }
 
 }

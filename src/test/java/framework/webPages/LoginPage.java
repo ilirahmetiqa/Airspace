@@ -10,7 +10,7 @@ public class LoginPage extends BasePage {
     private By username = By.id("username");
     private By password = By.id("password");
     private By loginButton = By.xpath("//*[text()=' Login']");
-    private By invalidUsernameText = By.id("flash");
+    private By invalidUserText = By.id("flash");
     private By dataAlertNotification = By.xpath("//div[@class='flash error']");
     private By LoginPageText = By.xpath("//h2[text()='Login Page']");
     private By informativeText = By.className("subheader");
@@ -39,8 +39,8 @@ public class LoginPage extends BasePage {
         clickOn(loginButton);
     }
 
-    public String getInvalidUserNameText(){
-        return getText(invalidUsernameText);
+    public String getInvalidUserText(){
+        return getText(invalidUserText);
     }
 
     public String flashAlertBackgroundColor(){
@@ -84,6 +84,24 @@ public class LoginPage extends BasePage {
     public void enterSqlInjection(int rowNumber) {
         try {
             readExcelData(rowNumber,2, 3,username, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void enterEscapeCharacters(int rowNumber) {
+        try {
+            readExcelData(rowNumber,4, 5,username, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void enterUppercaseData(int rowNumber) {
+        try {
+            readExcelData(rowNumber,6, 7,username, password);
         } catch (Exception e) {
             e.printStackTrace();
         }
