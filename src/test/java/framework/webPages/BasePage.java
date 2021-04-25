@@ -27,6 +27,10 @@ public class BasePage extends SharedSD {
         }
     }
 
+    public static void navigateBack() {
+        getDriver().navigate().back();
+    }
+
     public static String getText(By locator) {
         String text = null;
         try {

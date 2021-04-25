@@ -5,6 +5,19 @@ Feature: Login page validation
   Background: I am on Login page
 
 
+  Scenario: User enters a correct username and a correct password and is able to login
+    When I enter my username
+    And I enter my password
+    And I click on login button
+    Then I verify that I am able to login
+
+
+  Scenario: User should not be able to re-enter in the Secure Page by pressing ‘Back arrow’ once is loged out
+  Given I am loged out successfully
+  When I press the 'Back arrow'
+  Then I verify that I am not in the Secure Page
+
+
   Scenario: Verify that all text in the LoginPage are correct
     Then I verify that all texts of login page are correct
 
@@ -23,7 +36,7 @@ Feature: Login page validation
     And I verify that the Alert background text is red
     And I verify that the Alert text is white
 
-  Scenario: User enters a valid username and not entering password then fails to login
+  Scenario: User enters a correct username and not entering password then fails to login
     When I enter my username
     And I click on login button
     Then I verify that I am not able to login without password
@@ -42,16 +55,15 @@ Feature: Login page validation
     And I click on login button
     Then I verify that I am not able to login
 
-  Scenario: User enters a valid password and not entering username then fails to login
+  Scenario: User enters a correct password and not entering username then fails to login
     When I enter my password
     And I click on login button
     Then I verify that I am not able to login
 
 
-
   Scenario: User type some text in the password field and the password is masked
     When I enter my password
-    Then I verify that my password is maked
+    Then I verify that my password is masked
 
 
   Scenario Outline: User enters an not accepted characters in the username and password fields
@@ -138,7 +150,6 @@ Feature: Login page validation
       | 11                    |
       | 12                    |
       | 13                    |
-      | 14                    |
 
 
 
@@ -190,12 +201,6 @@ Feature: Login page validation
       | 40                    |
       | 41                    |
 
-
-  Scenario: User enters a valid username and a valid password and is able to login
-    When I enter my username
-    And I enter my password
-    And I click on login button
-    Then I verify that I am able to login
 
 
   Scenario: Verify that all text in the Logout Page are correct

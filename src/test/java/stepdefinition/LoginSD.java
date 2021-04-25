@@ -119,6 +119,29 @@ public class LoginSD {
     }
 
 
+    @Then("^I am loged out successfully$")
+    public void iAmLogoutSuccessfully() {
+        loginPage.enterUsername("tomsmith");
+        loginPage.enterPassword("SuperSecretPassword!");
+        loginPage.clickOnLoginButton();
+        Assert.assertEquals(securedPage.getsecuredPageText(), "You logged into a secure area!\n" +
+                "×", "FAIL TO LOGIN");
+        securedPage.clickOnLogoutButton();
+        Assert.assertEquals(loginPage.getLoginPageText(), "Login Page", "YOU ARE NOT IN THE LOGIN PAGE");
+    }
+
+
+    @When("^I press the 'Back arrow'$")
+    public void iPressTheBackArrow() {
+        securedPage.clickOnTheBackArrow();
+    }
+
+    @Then("^I verify that I am not in the Secure Page$")
+    public void iAmNotInTheSecurePage() {
+        Assert.assertEquals(loginPage.loginPageInfoText(), "This is where you can log into the secure area. Enter tomsmith for the username and SuperSecretPassword! for the password. If the information is wrong you should see error messages.", "YOU ARE NOT IN THE 'LOGIN PAGE' OR THE LONG TEXT IS NOT CORRECT IN LOGIN PAGE");
+    }
+
+
     @When("^I enter the incorrect username$")
     public void enterIncorrectUsername(){
         loginPage.enterIncorrectUsername("John");
@@ -142,7 +165,7 @@ public class LoginSD {
         loginPage.enterSqlInjection(sql);
     }
 
-    @Then("^I verify that my password is maked$")
+    @Then("^I verify that my password is masked$")
     public void passowrdIsMasked(){
         loginPage.enterPassword("SuperSecretPassword!");
         Assert.assertTrue(loginPage.thePasswordIsmasked());

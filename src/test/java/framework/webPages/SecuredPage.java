@@ -41,6 +41,10 @@ public class SecuredPage extends BasePage {
         return getText(dataAlertNotification);
     }
 
+    public void clickOnTheBackArrow(){
+        navigateBack();
+    }
+
 
 }
 
